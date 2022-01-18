@@ -1,6 +1,6 @@
 <ng-container *ngIf="movie$ | async as movie">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar [style.--background]="mainColor" [style.--color]="textColor">
       <ion-buttons slot="start">
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
@@ -8,8 +8,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
-    <div>
+  <ion-content [style.--background]="mainColor" [style.--color]="textColor">
+    <div class="img-gradient">
       <img *ngIf="movie.background" [src]="movie.background" class="background" />
     </div>
     <img *ngIf="movie.imageUrl" [src]="movie.imageUrl" class="movie-img" />
