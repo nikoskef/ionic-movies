@@ -32,4 +32,8 @@ export class ApiService {
       }))
     );
   }
+
+  getMovieCast(id: string, type: string) {
+    return this.http.get<{ cast: any[] }>(`${environment.api}/${type}/${id}/credits`).pipe(map((res) => res.cast));
+  }
 }

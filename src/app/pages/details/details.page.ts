@@ -15,6 +15,13 @@ export class DetailsPage implements OnInit {
   movie$: Observable<any>;
   mainColor = '#fff';
   textColor = '#000';
+  cast$: Observable<any[]>;
+
+  opts = {
+    slidesPerView: 2.4,
+    spaceBetween: 10,
+    slidesOffsetBefore: 10
+  };
 
   constructor(private api: ApiService, private route: ActivatedRoute, private elementRef: ElementRef) {}
 
@@ -23,6 +30,7 @@ export class DetailsPage implements OnInit {
       switchMap((paramMap) => {
         const id = paramMap.get('id');
         const type = paramMap.get('type');
+        this.cast$ = this.api.getMovieCast(id, type);
         return this.api.getMovieDetails(id, type);
       }),
       tap((movie) => {
