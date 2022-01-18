@@ -1,4 +1,4 @@
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import {
     HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse
