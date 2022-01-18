@@ -1,4 +1,10 @@
 {
   "printWidth": 120,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "overrides": [
+    {
+      "files": "*.page.html",
+      "options": { "parser": "angular" }
+    }
+  ]
 }

@@ -11,6 +11,7 @@ interface GetMoviesApi {
   total_pages: number;
   total_results: number;
 }
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   constructor(private http: HttpClient) {}
@@ -19,6 +20,16 @@ export class ApiService {
     return this.http.get<GetMoviesApi>(`${environment.api}/trending/all/day`).pipe(
       map((res) => res.results),
       map((results) => results.sort((a, b) => b.popularity - a.popularity))
+    );
+  }
+
+  getMovieDetails(id: string, type: string) {
+    return this.http.get<any>(`${environment.api}/${type}/${id}`).pipe(
+      map((movie) => ({
+        ...movie,
+        background: movie.backdrop_path ? `${environment.images}/w400/${movie.backdrop_path}` : null,
+        imageUrl: movie.poster_path ? `${environment.images}/w92/${movie.poster_path}` : null
+      }))
     );
   }
 }
