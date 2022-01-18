@@ -1,3 +1,6 @@
-<p>
-  movie-preview works!
-</p>
+<div>
+  <img [src]="imageUrl" />
+  <div class="rating">{{ movie.vote_average * 10 }}%</div>
+  <span class="title">{{ movie.title || movie.original_name }}</span>
+  <span class="release">{{ movie.release_date || movie.first_air_date | date: "LLL dd, y" }}</span>
+</div>

@@ -16,6 +16,9 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getTrending() {
-    return this.http.get<GetMoviesApi>(`${environment.api}/trending/all/day`).pipe(map((res) => res.results));
+    return this.http.get<GetMoviesApi>(`${environment.api}/trending/all/day`).pipe(
+      map((res) => res.results),
+      map((results) => results.sort((a, b) => b.popularity - a.popularity))
+    );
   }
 }

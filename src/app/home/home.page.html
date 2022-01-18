@@ -8,7 +8,7 @@
   <h2 class="ion-padding-start">Trending</h2>
   <ion-slides [options]="opts">
     <ion-slide *ngFor="let movie of trending$ | async">
-      <app-movie-preview></app-movie-preview>
+      <app-movie-preview [movie]="movie"></app-movie-preview>
     </ion-slide>
   </ion-slides>
 </ion-content>
