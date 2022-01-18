@@ -8,7 +8,7 @@
   <h2 class="ion-padding-start">Trending</h2>
   <ion-slides [options]="opts">
     <ion-slide *ngFor="let movie of trending$ | async">
-      <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" />
+      <app-movie-preview></app-movie-preview>
     </ion-slide>
   </ion-slides>
 </ion-content>
