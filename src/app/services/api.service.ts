@@ -71,4 +71,22 @@ export class ApiService {
       )
     );
   }
+
+  getSearchResults(term: string) {
+    return this.http
+      .get<{ results: any[] }>(`${environment.api}/search/multi`, {
+        params: {
+          query: term
+        }
+      })
+      .pipe(
+        map((res) => res.results),
+        map((results) =>
+          results.map((result) => ({
+            ...result,
+            imageUrl: result.poster_path ? `${environment.images}/w200/${result.poster_path}` : null
+          }))
+        )
+      );
+  }
 }

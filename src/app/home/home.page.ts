@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Component } from '@angular/core';
-import { ViewWillEnter } from '@ionic/angular';
+import { SearchbarCustomEvent, ViewWillEnter } from '@ionic/angular';
 
 import { ApiService } from '../services/api.service';
 
@@ -12,6 +12,9 @@ import { ApiService } from '../services/api.service';
 })
 export class HomePage implements ViewWillEnter {
   trending$: Observable<any[]>;
+  searchResults$: Observable<any[]>;
+
+  searchActive = false;
   opts = {
     slidesPerView: 2.4,
     spaceBetween: 10,
@@ -26,5 +29,16 @@ export class HomePage implements ViewWillEnter {
 
   loadTrending() {
     this.trending$ = this.api.getTrending();
+  }
+
+  searchChanged(event: Event) {
+    const search = (event as SearchbarCustomEvent).detail.value;
+    if (search !== '') {
+      this.searchActive = true;
+      this.searchResults$ = this.api.getSearchResults(search);
+    } else {
+      this.searchActive = false;
+      this.searchResults$ = of([]);
+    }
   }
 }
