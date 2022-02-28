@@ -1,6 +1,8 @@
 <div [routerLink]="[movie.media_type, movie.id]" tappable>
-  <img [src]="imageUrl" />
-  <div class="rating">{{ movie.vote_average * 10 }}%</div>
+  <div class="parent">
+    <img [src]="imageUrl" />
+    <div class="rating">{{ movie.vote_average * 10 }}%</div>
+  </div>
   <span class="title">{{ movie.title || movie.original_name }}</span>
   <span class="release">{{ movie.release_date || movie.first_air_date | date: "LLL dd, y" }}</span>
 </div>

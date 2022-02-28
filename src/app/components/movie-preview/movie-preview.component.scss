@@ -4,6 +4,10 @@ img {
   margin-bottom: 10px;
 }
 
+.parent {
+  position: relative;
+}
+
 .title {
   font-weight: 700;
   display: block;
@@ -31,6 +35,6 @@ img {
   font-size: 13px;
   position: absolute;
   font-weight: 600;
-  top: 190px;
-  left: 10px;
+  bottom: 18px;
+  left: 5px;
 }
