@@ -38,10 +38,10 @@
 
     <h2 class="ion-padding-start">Top Billed Cast</h2>
 
-    <ion-slides [options]="opts">
-      <ion-slide *ngFor="let cast of cast$ | async">
+    <swiper [config]="opts">
+      <ng-template swiperSlide *ngFor="let cast of cast$ | async">
         <app-cast [actor]="cast"></app-cast>
-      </ion-slide>
-    </ion-slides>
+      </ng-template>
+    </swiper>
   </ion-content>
 </ng-container>

@@ -1,10 +1,14 @@
 import Vibrant from 'node-vibrant';
 import { Observable, switchMap, tap } from 'rxjs';
+import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
 
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 import { ApiService } from '../../services/api.service';
+
+SwiperCore.use([Navigation]);
 
 @Component({
   selector: 'app-details',
@@ -17,13 +21,19 @@ export class DetailsPage implements OnInit {
   textColor = '#000';
   cast$: Observable<any[]>;
 
-  opts = {
+  opts: SwiperOptions = {
     slidesPerView: Math.round(window.innerWidth / 232) + 0.4,
     spaceBetween: 10,
-    slidesOffsetBefore: 10
+    slidesOffsetBefore: 10,
+    navigation: this.platform.is('desktop')
   };
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private elementRef: ElementRef) {}
+  constructor(
+    private api: ApiService,
+    private route: ActivatedRoute,
+    private elementRef: ElementRef,
+    private platform: Platform
+  ) {}
 
   ngOnInit() {
     this.movie$ = this.route.paramMap.pipe(
