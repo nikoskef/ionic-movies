@@ -1,9 +1,12 @@
 import { Observable, of } from 'rxjs';
+import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
 
 import { Component } from '@angular/core';
-import { SearchbarCustomEvent, ViewWillEnter } from '@ionic/angular';
+import { Platform, SearchbarCustomEvent, ViewWillEnter } from '@ionic/angular';
 
 import { ApiService } from '../services/api.service';
+
+SwiperCore.use([Navigation]);
 
 @Component({
   selector: 'app-home',
@@ -15,13 +18,18 @@ export class HomePage implements ViewWillEnter {
   searchResults$: Observable<any[]>;
 
   searchActive = false;
-  opts = {
+  opts: SwiperOptions = {
     slidesPerView: Math.round(window.innerWidth / 232) + 0.4,
     spaceBetween: 10,
-    slidesOffsetBefore: 10
+    slidesOffsetBefore: 10,
+    navigation: !this.platform.is('hybrid')
+    // pagination: {
+    //   clickable: true,
+    //    renderBullet: (index, className) => '<span class="' + className + '">' + (index + 1) + '</span>'
+    // }
   };
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private platform: Platform) {}
 
   ionViewWillEnter(): void {
     this.loadTrending();
