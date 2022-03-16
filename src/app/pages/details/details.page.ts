@@ -18,7 +18,7 @@ export class DetailsPage implements OnInit {
   cast$: Observable<any[]>;
 
   opts = {
-    slidesPerView: 2.4,
+    slidesPerView: Math.round(window.innerWidth / 232) + 0.4,
     spaceBetween: 10,
     slidesOffsetBefore: 10
   };
