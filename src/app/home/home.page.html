@@ -23,14 +23,22 @@
   </div>
 
   <div *ngIf="searchActive">
-    <ion-row *ngFor="let result of searchResults$ | async" tappable [routerLink]="['/', result.media_type, result.id]">
-      <ion-col size="3" class="ion-no-padding">
-        <ion-img [src]="result.imageUrl"></ion-img>
-      </ion-col>
-      <ion-col size="9" class="preview">
-        <b>{{ result.title }}</b
-        ><br />
-        {{ result.overview?.length > 200 ? (result.overview | slice: 0:200) + "..." : result.overview }}
+    <ion-row>
+      <ion-col
+        size="6"
+        sizeMd="2"
+        *ngFor="let result of searchResults$ | async"
+        tappable
+        [routerLink]="['/', result.media_type, result.id]"
+      >
+        <ion-col size="2" class="ion-no-padding">
+          <ion-img [src]="result.imageUrl"></ion-img>
+        </ion-col>
+        <ion-col size="2" class="preview">
+          <b>{{ result.title ?? result.name }}</b
+          ><br />
+          {{ result.overview?.length > 200 ? (result.overview | slice: 0:200) + "..." : result.overview }}
+        </ion-col>
       </ion-col>
     </ion-row>
   </div>

@@ -22,7 +22,7 @@ export class HomePage implements ViewWillEnter {
     slidesPerView: Math.round(window.innerWidth / 232) + 0.4,
     spaceBetween: 10,
     slidesOffsetBefore: 10,
-    navigation: !this.platform.is('hybrid')
+    navigation: this.platform.is('desktop')
     // pagination: {
     //   clickable: true,
     //    renderBullet: (index, className) => '<span class="' + className + '">' + (index + 1) + '</span>'
