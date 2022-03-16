@@ -29,6 +29,11 @@
   background: var(--maindark);
 }
 
+img {
+  max-height: 300px;
+  object-fit: cover;
+}
+
 .overview {
   padding: 15px;
 }

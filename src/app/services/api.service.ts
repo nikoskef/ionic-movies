@@ -27,7 +27,7 @@ export class ApiService {
     return this.http.get<any>(`${environment.api}/${type}/${id}`).pipe(
       map((movie) => ({
         ...movie,
-        background: movie.backdrop_path ? `${environment.images}/w400/${movie.backdrop_path}` : null,
+        background: movie.backdrop_path ? `${environment.images}/w500/${movie.backdrop_path}` : null,
         imageUrl: movie.poster_path ? `${environment.images}/w92/${movie.poster_path}` : null
       }))
     );
