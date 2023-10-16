@@ -15,11 +15,12 @@
 
   <div *ngIf="!searchActive">
     <h2 class="ion-padding-start">Trending</h2>
-    <swiper [config]="opts">
-      <ng-template swiperSlide *ngFor="let movie of trending$ | async">
+
+    <swiper-container #swiper [keyboard]="true" [modules]="swiperModules" [options]="swiperParams">
+      <swiper-slide *ngFor="let movie of trending$ | async">
         <app-movie-preview [movie]="movie"></app-movie-preview>
-      </ng-template>
-    </swiper>
+      </swiper-slide>
+    </swiper-container>
   </div>
 
   <div *ngIf="searchActive">
@@ -37,7 +38,7 @@
         <ion-col size="2" class="preview">
           <b>{{ result.title ?? result.name }}</b
           ><br />
-          {{ result.overview?.length > 200 ? (result.overview | slice: 0:200) + "..." : result.overview }}
+          {{ result.overview?.length > 200 ? (result.overview | slice : 0 : 200) + "..." : result.overview }}
         </ion-col>
       </ion-col>
     </ion-row>
