@@ -1,8 +1,10 @@
+[build]
+  publish = "www/"
+  command = "ng build"
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-[build]
-  publish = "www/"
-  command = "ng build"
+[dev]
+  command = "ng serve"
 
