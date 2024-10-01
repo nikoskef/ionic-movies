@@ -1,15 +1,20 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicSlides, Platform, SearchbarCustomEvent, ViewWillEnter } from '@ionic/angular';
+import { IonicSlides, Platform, SearchbarCustomEvent, ViewWillEnter, IonicModule } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperOptions } from 'swiper/types';
 
 import { ApiService } from '../services/api.service';
+import { MoviePreviewComponent } from '../components/movie-preview/movie-preview.component';
+import { RouterLink } from '@angular/router';
+import { AsyncPipe, SlicePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    standalone: true,
+    imports: [IonicModule, MoviePreviewComponent, RouterLink, AsyncPipe, SlicePipe]
 })
 export class HomePage implements ViewWillEnter {
   trending$: Observable<any[]>;

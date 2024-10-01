@@ -1,15 +1,20 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { Platform, IonicModule } from '@ionic/angular';
 import Vibrant from 'node-vibrant';
 import { Observable, switchMap, tap } from 'rxjs';
 
 import { ApiService } from '../../services/api.service';
+import { CastComponent } from '../../components/cast/cast.component';
+import { AsyncPipe, DatePipe } from '@angular/common';
+import { DurationPipe } from '../../pipes/duration.pipe';
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.page.html',
-  styleUrls: ['./details.page.scss']
+    selector: 'app-details',
+    templateUrl: './details.page.html',
+    styleUrls: ['./details.page.scss'],
+    standalone: true,
+    imports: [IonicModule, CastComponent, AsyncPipe, DatePipe, DurationPipe]
 })
 export class DetailsPage implements OnInit {
   movie$: Observable<any>;

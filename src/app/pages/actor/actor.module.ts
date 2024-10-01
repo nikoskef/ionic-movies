@@ -9,12 +9,12 @@ import { ActorPageRoutingModule } from './actor-routing.module';
 import { ActorPage } from './actor.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ActorPageRoutingModule
-  ],
-  declarations: [ActorPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ActorPageRoutingModule,
+        ActorPage
+    ]
 })
 export class ActorPageModule {}
