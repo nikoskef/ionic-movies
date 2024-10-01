@@ -1,4 +1,4 @@
-<ng-container *ngIf="movie$ | async as movie">
+@if (movie$ | async; as movie) {
   <ion-header>
     <ion-toolbar [style.--background]="mainColor" [style.--color]="textColor">
       <ion-buttons slot="start">
@@ -7,41 +7,45 @@
       <ion-title>{{ movie.title ?? movie.original_name }}</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content [style.--background]="mainColor" [style.--color]="textColor">
     <div class="img-gradient">
-      <img *ngIf="movie.background" [src]="movie.background" class="background" />
+      @if (movie.background) {
+        <img [src]="movie.background" class="background" />
+      }
     </div>
-    <img *ngIf="movie.imageUrl" [src]="movie.imageUrl" class="movie-img" />
-
+    @if (movie.imageUrl) {
+      <img [src]="movie.imageUrl" class="movie-img" />
+    }
     <div class="header">
       <p class="title">
         {{ movie.title ?? movie.original_name }}
         <span class="release">({{ movie.release_date || movie.first_air_date | date : "y" }})</span>
       </p>
     </div>
-
     <div class="info">
       <div>{{ movie.release_date || movie.first_air_date | date : "LLL dd, y" }} - {{ movie.runtime | duration }}</div>
-      <span *ngFor="let genre of movie.genres; let isLast = last">
-        {{ genre.name }}<span *ngIf="!isLast">,</span>
+      @for (genre of movie.genres; track genre; let isLast = $last) {
+        <span>
+          {{ genre.name }}@if (!isLast) {
+          <span>,</span>
+        }
       </span>
-    </div>
-
-    <div class="overview">
-      <p>
-        <em>{{ movie.tagline }}</em>
-      </p>
-      <h2>Overview</h2>
-      {{ movie.overview }}
-    </div>
-
-    <h2 class="ion-padding-start">Top Billed Cast</h2>
-
-    <swiper [config]="opts">
-      <ng-template swiperSlide *ngFor="let cast of cast$ | async">
+    }
+  </div>
+  <div class="overview">
+    <p>
+      <em>{{ movie.tagline }}</em>
+    </p>
+    <h2>Overview</h2>
+    {{ movie.overview }}
+  </div>
+  <h2 class="ion-padding-start">Top Billed Cast</h2>
+  <swiper [config]="opts">
+    @for (cast of cast$ | async; track cast) {
+      <ng-template swiperSlide>
         <app-cast [actor]="cast"></app-cast>
       </ng-template>
-    </swiper>
-  </ion-content>
-</ng-container>
+    }
+  </swiper>
+</ion-content>
+}
